@@ -4,91 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="code.js" defer></script>
 </head>
 <body>
     <noscript>You need Javascript to play this game!</noscript>
-    <script>
-        "use strict";
-        const CHOICES = ["rock", "paper", "scissors"];
-        let player = 0;
-        let computer = 0;
+    <div class="container">
+        <h1>Man vs Computer</h1>
+        <div class="score">
+            <label>0</label>
+            <label>0</label>
+        </div>
+        <div class="choice">
+            <label>Choose Your Weapon</label>
+            <label>Waiting for their opponent</label>
+        </div>
 
-
-        function getComputerChoice() {
-            return  CHOICES[Math.floor(Math.random(0,2) + .5)]
-        }
-
-        function validateChoice(choice) {    
-            if (typeof choice != "string") return false
-
-            choice = choice.toLowerCase()
-            switch(choice) {
-                case "rock":
-                case "paper":
-                case "scissors":
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        function getPrompt() {
-            let temp = prompt("Choose your choice! ROCK | PAPER | SCISSORS : ");
-            if (validateChoice(temp)) {
-                return temp;
-            } else {
-                console.log("Invalid response.")
-                return getPrompt();
-            }
-        }
-
-        
-
-        function playRound() {
-            let choice = getPrompt();
-            let computerChoice = getComputerChoice();
-
-            switch(true) {
-                case choice === "rock" && computerChoice === "scissors":
-                case choice === "paper" && computerChoice === "rock":
-                case choice === "scissors" && computerChoice === "paper":
-                    console.log(`You chose: ${choice} | ${choice} beats ${computerChoice}`);
-                    return "player";
-
-                case choice === "scissors" && computerChoice === "rock":
-                case choice === "rock" && computerChoice === "paper":
-                case choice === "paper" && computerChoice === "scissors":
-                    console.log(`You chose: ${choice} | ${choice} loses to ${computerChoice}`);
-                    return "computer";
-
-                default:
-                    console.log(`You chose: ${choice} | The Computer also chose ${choice}`);
-                    return "tie";
-            }
-            
-            
-        }
-
-        function playGame() {
-            let winner;
-            for (let i = 0; i < 5; i++) {
-                winner = playRound()
-
-                if (winner === "player") {
-                    player++;
-                    console.log("You won!.");
-                } else if (winner === "computer") {
-                    computer++;
-                    console.log("You lost.");
-                } else {
-                    console.log("It is a draw, no winner!");
-                }
-            } 
-        }
-
-
-
-    </script>
+        <div class="choices">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+    </div>
+    
 </body>
 </html>
